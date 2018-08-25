@@ -1,0 +1,28 @@
+:host {
+    display: block;
+}
+
+.item {
+  text-decoration: none;
+  padding: 15px 0;
+  display: block;
+  color: #222;
+
+  &__name {
+    margin: 0 0 10px;
+  }
+
+  &__info {
+      display: inline-block;
+
+      &:not(:first-child) {
+        margin-left: 10px;
+      }
+  }
+
+  &_active {
+    .item__name {
+      color: #008;
+    }
+  }
+}
