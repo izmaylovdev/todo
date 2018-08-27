@@ -1,0 +1,12 @@
+<span *ngIf="!editMode else editor" (click)="turnOnEditMode()">{{text}}</span>
+
+<ng-template #editor>
+  <input
+    type="text"
+    autofocus="true"
+    #input
+    [value]="text"
+    (change)="onTextChange($event.target.value)"
+    (blur)="turnOffEditMode()"
+  >
+</ng-template>

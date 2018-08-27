@@ -5,16 +5,22 @@ import {
   ActionReducer,
   createFeatureSelector
 } from '@ngrx/store';
+
 import { environment } from '../../../environments/environment';
+import { getParamForRoute } from '../helpers/getParamForRoute';
+
+import { routerReducer, RouterReducerState } from '@ngrx/router-store';
 
 import * as fromTodos from './reducers/todos.reducer';
 
 export interface AppState {
   todos: fromTodos.State;
+  router: RouterReducerState;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
   todos: fromTodos.reducer,
+  router: routerReducer
 };
 
 // console.log all actions
@@ -29,6 +35,7 @@ export function logger(reducer: ActionReducer<any>): ActionReducer<any> {
 export const metaReducers: MetaReducer<AppState>[] = !environment.production ? [logger] : [];
 
 const selectTodosState = createFeatureSelector('todos');
+const selectRouterState = createFeatureSelector('router');
 
 const selectAllTodos = createSelector(
   selectTodosState,
@@ -50,7 +57,17 @@ const selectTodoById = id => createSelector(
   entities => entities[id],
 );
 
+const selectTodoForCurrentRoute = createSelector(
+  selectTodosEntities,
+  selectRouterState,
+  (entities, routerState: RouterReducerState) => {
+    const todoId = getParamForRoute(routerState.state.root, 'id');
+    return entities[todoId];
+  }
+);
+
 export const todosSelectors = {
   selectActiveTodos,
-  selectTodoById
+  selectTodoById,
+  selectTodoForCurrentRoute
 };

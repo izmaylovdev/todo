@@ -1,0 +1,9 @@
+<div class="item-info">
+  <span class="item-info__field" *ngIf="todo.due_date"><b>Due date:</b> {{ todo.due_date | date }}</span>
+  <span class="item-info__field" *ngIf="todo.actual_effort || todo.actual_effort === 0"><b>Actual effort:</b> {{ todo.actual_effort }}</span>
+  <span class="item-info__field" *ngIf="todo.estimated_effort  || todo.estimated_effort === 0"><b>Estimated effort:</b> {{ todo.estimated_effort }}</span>
+  <span class="item-info__field" *ngIf="todo.tags?.length">
+    <b>Tags: </b>
+    <span *ngFor="let tag of todo.tags; let last = last">{{ tag + (last? '': ', ') }}</span>
+  </span>
+</div>

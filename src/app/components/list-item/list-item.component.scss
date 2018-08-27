@@ -12,17 +12,9 @@
     margin: 0 0 10px;
   }
 
-  &__info {
-      display: inline-block;
-
-      &:not(:first-child) {
-        margin-left: 10px;
-      }
-  }
-
-  &_active {
+  &_high-priority {
     .item__name {
-      color: #008;
+      color: #B00;
     }
   }
 }

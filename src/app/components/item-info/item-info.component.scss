@@ -1,0 +1,13 @@
+:host {
+    display: block;
+}
+
+.item-info {
+  &__field {
+    display: inline-block;
+    
+    &:not(:first-child) {
+        margin-left: 10px;
+    }
+  }
+}

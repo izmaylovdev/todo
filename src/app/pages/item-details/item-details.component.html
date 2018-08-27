@@ -1,3 +1,14 @@
-<p>
-  item-details works!
-</p>
+<mat-card *ngIf="todo" class="item-details">
+  <div class="item-details__header">
+    <todo-editable-text 
+      class="item-details__title" 
+      [text]="todo.name" 
+      (textChange)="onNameChange($event)"
+    ></todo-editable-text>
+    <todo-item-info [todo]="todo"></todo-item-info>
+  </div>
+  <div class="item-details__description">
+    <h3>Description</h3>
+    <p>{{ todo.description }}</p>
+  </div>
+</mat-card>

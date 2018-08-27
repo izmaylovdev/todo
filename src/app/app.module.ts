@@ -10,6 +10,8 @@ import { CoreModule } from './core/core.module';
 import { MaterialModule } from './material.module';
 import { ListComponent } from './components/list/list.component';
 import { ListItemComponent } from './components/list-item/list-item.component';
+import { ItemInfoComponent } from './components/item-info/item-info.component';
+import { EditableTextComponent } from './components/editable-text/editable-text.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { ListItemComponent } from './components/list-item/list-item.component';
     HomeComponent,
     ItemDetailsComponent,
     ListComponent,
-    ListItemComponent
+    ListItemComponent,
+    ItemInfoComponent,
+    EditableTextComponent
   ],
   imports: [
     BrowserModule,

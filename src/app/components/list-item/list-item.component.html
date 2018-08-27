@@ -1,12 +1,6 @@
-<a class="item" [routerLink]="['/', todo.id]" [ngClass]="{ 'item_active': todo.obj_status === 'active' }">
+<a class="item" [routerLink]="['/', todo.id]" [ngClass]="{ 'item_high-priority': todo.is_high_priority }">
   <h2 class="item__name">{{ todo.name }}</h2>
   <div class="item__data">
-    <span class="item__info"><b>Due date:</b> {{ todo.due_date | date }}</span>
-    <span class="item__info"><b>Actual effort:</b> {{ todo.actual_effort }}</span>
-    <span class="item__info"><b>Estimated effort:</b> {{ todo.estimated_effort }}</span>
-    <span class="item__info" *ngIf="todo.tags?.length">
-      <b>Tags: </b>
-      <span *ngFor="let tag of todo.tags; let last = last">{{ tag + (last? '': ',') }}</span>
-    </span>
+    <todo-item-info [todo]="todo"></todo-item-info>
   </div>
 </a>

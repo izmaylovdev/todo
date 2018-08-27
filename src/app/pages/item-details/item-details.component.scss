@@ -1,0 +1,14 @@
+:host {
+    display: block;
+}
+
+.item-details {
+
+    &__title{
+        font-size: 3em;
+    }
+}
+
+todo-item-info {
+    margin-top: 20px;
+}

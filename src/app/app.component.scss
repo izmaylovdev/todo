@@ -6,8 +6,17 @@ mat-toolbar {
     justify-content: center;
 }
 
+.header-link {
+    text-decoration: none;
+    color: #222;
+
+    :hover {
+        text-decoration: underline;
+    }
+}
+
 .wrap {
-    width: 90%;
+    width: 80%;
     min-width: 300px;
     margin: 20px auto;
 }
