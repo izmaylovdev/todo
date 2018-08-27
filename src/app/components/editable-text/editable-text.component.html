@@ -1,4 +1,4 @@
-<span *ngIf="!editMode else editor" (click)="turnOnEditMode()">{{text}}</span>
+<span *ngIf="!editMode else editor" class="text" (click)="turnOnEditMode()">{{text}}</span>
 
 <ng-template #editor>
   <input

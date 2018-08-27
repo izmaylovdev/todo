@@ -12,6 +12,7 @@ interface TodoItem {
     obj_status: string;
     description?: string;
     project_id: number;
+    task_type?: string;
 }
 
 export default TodoItem;
