@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ListItemComponent } from './list-item.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { MOCK_TODO } from '../../../assets/mock-todo';
+import { ItemInfoComponent } from '../item-info/item-info.component';
 
 describe('ListItemComponent', () => {
   let component: ListItemComponent;
@@ -8,7 +11,8 @@ describe('ListItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ListItemComponent ]
+      imports: [ RouterTestingModule ],
+      declarations: [ ListItemComponent, ItemInfoComponent ]
     })
     .compileComponents();
   }));
@@ -16,6 +20,7 @@ describe('ListItemComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ListItemComponent);
     component = fixture.componentInstance;
+    component.todo = MOCK_TODO;
     fixture.detectChanges();
   });
 

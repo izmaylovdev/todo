@@ -10,7 +10,7 @@ interface TodoItem {
     actual_effort: number;
     physical_progress: number;
     obj_status: string;
-    description: string;
+    description?: string;
     project_id: number;
 }
 

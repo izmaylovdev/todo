@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ListComponent } from './list.component';
+import { ListItemComponent } from '../list-item/list-item.component';
+import { MaterialModule } from '../../material.module';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ItemInfoComponent } from '../item-info/item-info.component';
 
 describe('ListComponent', () => {
   let component: ListComponent;
@@ -8,7 +12,8 @@ describe('ListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ListComponent ]
+      imports: [ MaterialModule, RouterTestingModule ],
+      declarations: [ ListComponent, ListItemComponent, ItemInfoComponent ]
     })
     .compileComponents();
   }));

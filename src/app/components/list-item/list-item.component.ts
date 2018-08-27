@@ -8,6 +8,7 @@ import TodoItem from '../../core/models/todo-item.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ListItemComponent implements OnInit {
+
   @Input() todo: TodoItem;
 
   constructor() { }
