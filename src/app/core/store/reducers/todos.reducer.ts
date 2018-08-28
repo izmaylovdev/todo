@@ -15,7 +15,7 @@ export function reducer(state = initialState, { type, payload }) {
         case TodosActionTypes.CREATE_TODO:
             return adapter.addOne(payload, state);
 
-        case TodosActionTypes.UPDATE_TODO:
+        case TodosActionTypes.UPDATE_TODO_SUCCESS:
             return adapter.updateOne({
                 id: payload.id,
                 changes: payload

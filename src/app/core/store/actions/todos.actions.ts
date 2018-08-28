@@ -6,6 +6,7 @@ export enum TodosActionTypes {
     LOAD_TODO = '[TODOS] Load todo by ID from server',
     LOAD_TODOS_SUCCESS = '[TODOS] List of todos loaded',
     UPDATE_TODO = '[TODOS] Update todo',
+    UPDATE_TODO_SUCCESS = '[TODOS] Todo successfuly updated on server',
     DELETE_TODO = '[TODOS] Delete todo'
 }
 
@@ -16,6 +17,11 @@ export class CreateTodoAction {
 
 export class UpdateTodoAction {
     readonly type = TodosActionTypes.UPDATE_TODO;
+    constructor(public payload: TodoItem) {}
+}
+
+export class UpdateTodoSuccessAction {
+    readonly type = TodosActionTypes.UPDATE_TODO_SUCCESS;
     constructor(public payload: TodoItem) {}
 }
 

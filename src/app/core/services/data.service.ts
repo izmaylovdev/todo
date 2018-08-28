@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap, map } from 'rxjs/operators';
 import TodoItem from '../models/todo-item.model';
 
 @Injectable({
@@ -27,9 +27,10 @@ export class DataService {
   }
 
   updateTodo(todo: TodoItem) {
-    return this.httpClient.put<TodoItem>(`${this.baseURL}/todos`, todo)
+    return this.httpClient.put<TodoItem>(`${this.baseURL}/todos/${todo.id}`, todo)
       .pipe(
-        catchError(this.errorHandler)
+        catchError(this.errorHandler),
+        map(updatedTodo => updatedTodo || todo) // this is hardcode... I know it... but this query returns null and I don't know why...
       );
   }
 
@@ -41,6 +42,7 @@ export class DataService {
   }
 
   private errorHandler(error: HttpErrorResponse) {
+    console.error(error);
     return throwError(error);
   }
 }

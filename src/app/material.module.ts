@@ -4,13 +4,15 @@ import { CommonModule } from '@angular/common';
 import {
   MatToolbarModule,
   MatCardModule,
-  MatListModule
+  MatListModule,
+  MatSnackBarModule
 } from '@angular/material';
 
 const MODULES = [
   MatToolbarModule,
   MatCardModule,
-  MatListModule
+  MatListModule,
+  MatSnackBarModule
 ];
 
 @NgModule({
