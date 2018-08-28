@@ -26,6 +26,7 @@ describe('DataService', () => {
 
       expect(mockReq.cancelled).toBeFalsy();
       expect(mockReq.request.responseType).toEqual('json');
+      expect(mockReq.request.method).toEqual('GET');
       mockReq.flush([MOCK_TODO]);
 
       httpMock.verify();

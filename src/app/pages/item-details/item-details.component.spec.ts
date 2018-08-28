@@ -11,6 +11,8 @@ import { Store, Action } from '@ngrx/store';
 import { MOCK_TODO } from '../../../assets/mock-todo';
 import { ActivatedRoute } from '@angular/router';
 import { LoadTodoAction, UpdateTodoAction } from '../../core/store/actions/todos.actions';
+import { CoreModule } from '../../core/core.module';
+import { AppState } from '../../core/store';
 
 class ActivatedRouteStub {
 
@@ -52,13 +54,13 @@ class StoreStub {
 describe('ItemDetailsComponent', () => {
   let component: ItemDetailsComponent;
   let fixture: ComponentFixture<ItemDetailsComponent>;
+  let store: Store<AppState>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ MaterialModule, RouterTestingModule ],
+      imports: [ MaterialModule, RouterTestingModule, CoreModule ],
       declarations: [ ItemDetailsComponent, ItemInfoComponent, EditableTextComponent ],
       providers: [
-        { provide: Store, useValue: new StoreStub },
         { provide: ActivatedRoute, useValue: new ActivatedRouteStub },
       ]
     })
@@ -67,6 +69,9 @@ describe('ItemDetailsComponent', () => {
 
 
   beforeEach(() => {
+    store = TestBed.get(Store);
+    spyOn(store, 'dispatch').and.callThrough();
+
     fixture = TestBed.createComponent(ItemDetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -80,31 +85,26 @@ describe('ItemDetailsComponent', () => {
 
   it('should dispath "LoadTodoAction" on params change', () => {
     const route = TestBed.get(ActivatedRoute) as ActivatedRouteStub;
-    const store = TestBed.get(Store) as StoreStub;
 
-    store.actionSubject.subscribe(action =>
-      expect(action).toEqual(new LoadTodoAction(2))
-    );
-
+    expect(store.dispatch).toHaveBeenCalledWith(new LoadTodoAction(1));
     route.id = '2';
+    expect(store.dispatch).toHaveBeenCalledWith(new LoadTodoAction(2));
   });
 
 
   it('should dispath "UpdateTodoAction" on todo name change', () => {
-    const store = TestBed.get(Store) as StoreStub;
     const updatedTodo = { ...MOCK_TODO, name: 'new name' };
 
-    store.actionSubject.subscribe(action => {
-      expect(action).toEqual(new UpdateTodoAction(updatedTodo));
-    });
-
+    component.todo = MOCK_TODO;
     component.onNameChange(updatedTodo.name);
+    expect(store.dispatch).toHaveBeenCalledWith(new UpdateTodoAction(updatedTodo));
   });
 
 
   it('should display todo description', () => {
     const compiled = fixture.debugElement.nativeElement;
-
+    component.todo = MOCK_TODO;
+    fixture.detectChanges();
     expect(compiled.querySelector('.item-details__description').textContent).toContain(MOCK_TODO.description);
   });
 
